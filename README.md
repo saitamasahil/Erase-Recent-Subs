@@ -1,29 +1,29 @@
 # Erase Recent Subs
 
-A lightweight Tampermonkey userscript that removes Reddit's “Recent Subreddits” section by deleting its saved data from localStorage on every page load in new reddit tab. No timers, no loops — just clean browsing.
+A lightweight Tampermonkey userscript that removes Reddit's “Recent Subreddits” section by deleting its saved data from localStorage every time you open a new Reddit tab or refresh the homepage. No timers, no loops — just clean browsing.
 
 ## ✨ Features
 
 - Automatically erases the `recent-subreddits-store` from localStorage
 - Runs once per page load — no performance impact
-- Keeps Reddit sidebar minimal and private
+- Keeps the Reddit sidebar minimal and private
 
 ## 🔧 Installation
 
 1. Install the **Tampermonkey** extension from [tampermonkey.net](https://www.tampermonkey.net/) if you haven’t already.
 
-2. Then visit the script page:
+2. Visit the script page:
 
    👉 [Erase Recent Subs – GreasyFork](https://greasyfork.org/en/scripts/538163-erase-recent-subs-remove-recent-subreddits-section)
 
 3. Click the **“Install this script”** button.
 
-4. Done! The script will now automatically remove the "Recent Subreddits" section every time you load Reddit in new tab.
+4. Done! The script will now automatically remove the "Recent Subreddits" section each time you open a new Reddit tab or refresh the homepage.
 
 ## 🧠 How It Works
 
 Reddit stores your recently visited subreddits in a localStorage key called `recent-subreddits-store`.  
-This script simply removes that key once the page loads in the new reddit tab, preventing the list from appearing.
+This script removes that key once the page loads, preventing the list from appearing — effective when opening a new Reddit tab or refreshing the homepage.
 
 ## 🛡 License
 
