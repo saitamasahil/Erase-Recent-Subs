@@ -1,12 +1,14 @@
 # Erase Recent Subs
 
-A lightweight Tampermonkey userscript that removes Reddit's “Recent Subreddits” section by deleting its saved data from localStorage every time you open a new Reddit tab or refresh the homepage. No timers, no loops — just clean browsing.
+A lightweight Tampermonkey userscript that completely removes Reddit's **"Recent"** / **"Recent Subreddits"** sidebar section by clearing both modern and legacy storage keys, blocking re-saves during navigation, and hiding sidebar elements.
 
 ## ✨ Features
 
-- Automatically erases the `recent-subreddits-store` from localStorage
-- Runs once per page load — no performance impact
-- Keeps the Reddit sidebar minimal and private
+- **Modern Reddit (Shreddit) & Legacy Support:** Clears both `recent-page-store` (new) and `recent-subreddits-store` (legacy).
+- **Prevents Re-saving:** Intercepts `Storage.setItem` to block Reddit from recording recent subreddits/posts as you browse.
+- **Visual Removal:** Injects CSS rules at `document-start` to hide `<reddit-recent-pages>` and related containers without any visual flicker, even when synced to your account or rendered server-side.
+- **SPA Navigation Aware:** Automatically cleans up storage and DOM elements on Single-Page Application (SPA) navigation (`pushState`, `popstate`).
+- **Zero Lag:** Lightweight with no polling loops.
 
 ## 🔧 Installation
 
@@ -18,12 +20,16 @@ A lightweight Tampermonkey userscript that removes Reddit's “Recent Subreddits
 
 3. Click the **“Install this script”** button.
 
-4. Done! The script will now automatically remove the "Recent Subreddits" section each time you open a new Reddit tab or refresh the homepage.
+4. Done! The script will now automatically keep the "Recent" section gone as you browse Reddit.
 
 ## 🧠 How It Works
 
-Reddit stores your recently visited subreddits in a localStorage key called `recent-subreddits-store`.  
-This script removes that key once the page loads, preventing the list from appearing — effective when opening a new Reddit tab or refreshing the homepage.
+Reddit previously stored recently visited subreddits solely under the `recent-subreddits-store` localStorage key. In newer iterations of Reddit's interface ("shreddit"):
+1. The storage key changed to `recent-page-store`.
+2. Reddit dynamically writes to storage as you navigate across subreddits.
+3. The `<reddit-recent-pages>` element can be rendered server-side or synced with your account.
+
+This updated userscript handles all three: it wipes and intercepts the storage keys, injects CSS to hide the elements instantly without flicker, and observes DOM changes during client-side navigation.
 
 ## 🛡 License
 
